@@ -13,7 +13,7 @@ task main()
 		override = (bool)(int)vexRT[Btn5U];
 	}
 
-	while (SensorValue[ultraSensor] < 80){
+	while (SensorValue[ultraSensor] < 80 && !override){
 		motor[port2] = 30;
 		motor[port3] = 30;
 	}
