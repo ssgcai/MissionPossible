@@ -1,4 +1,3 @@
-#pragma config(Sensor, dgtl4,  dataSpecifierLight, sensorLEDtoVCC)
 #pragma config(Sensor, dgtl5,  noDataLight,    sensorLEDtoVCC)
 #pragma config(Sensor, dgtl6,  l6,             sensorLEDtoVCC)
 #pragma config(Sensor, dgtl7,  l5,             sensorLEDtoVCC)
@@ -20,14 +19,12 @@ void allLightsOff(){
 	SensorValue(l5) = 0;
 	SensorValue(l6) = 0;
 	SensorValue(noDataLight) = 0;
-	SensorValue(dataSpecifierLight) = 0;
-
 }
 void displayNumber(){
 	for(int i = 0; i < 4; i++){
-		SensorValue(dataSpecifierLight) = 1;
+		SensorValue(noDataLight) = 1;
 		wait1Msec(500);
-		SensorValue(dataSpecifierLight) = 0;
+		SensorValue(noDataLight) = 0;
 		wait1Msec(500);
 	}
 	SensorValue(l0) = (int) lightDisplay[0];
@@ -38,12 +35,11 @@ void displayNumber(){
 	SensorValue(l5) = (int) lightDisplay[5];
 	SensorValue(l6) = (int) lightDisplay[6];
 	SensorValue(noDataLight) = (int) lightDisplay[7];
-	SensorValue(dataSpecifierLight) = 1;
 	wait1Msec(5000);
 }
 
 void changeDisplay(int data){
-	SensorValue(dataSpecifierLight) = 0;
+	SensorValue(noDataLight) = 0;
 	int temp = data;
 	if (data > 127){lightDisplay[7] = true; return;}
 	if (temp >= 64){
